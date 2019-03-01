@@ -34,7 +34,7 @@ class Indexer
     case operation.to_s
       when /index|update/
         record = klass.constantize.find(record_id)
-        record.__elasticsearch__.client = Client
+        record.__elasticsearch__.client = Client  # 这里的 record 表示 doc 吗？
         record.__elasticsearch__.__send__ "#{operation}_document"
       when /delete/
         Client.delete index: klass.constantize.index_name, type: klass.constantize.document_type, id: record_id

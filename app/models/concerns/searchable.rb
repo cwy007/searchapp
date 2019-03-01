@@ -19,6 +19,9 @@ module Searchable
   extend ActiveSupport::Concern
 
   included do
+    # 这个块中的的 self 是指目标类
+    # 在这个 block 中定义的方法类似于在 class 中直接写
+    #
     include Elasticsearch::Model
 
     # Customize the index name
@@ -71,6 +74,7 @@ module Searchable
     after_touch  lambda { Indexer.perform_async(:update, self.class.to_s, self.id) }
 
     # Customize the JSON serialization for Elasticsearch
+    # 这是个实例方法
     #
     def as_indexed_json(options={})
       hash = self.as_json(
@@ -85,6 +89,7 @@ module Searchable
     #
     # @param query [String] The user query
     # @return [Elasticsearch::Model::Response::Response]
+    # 这会是个类 class 方法
     #
     def self.search(query, options={})
 
