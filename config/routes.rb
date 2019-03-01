@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :authorships
+  resources :authors
+  resources :categories
   resources :articles do
     collection { get :search }
   end
