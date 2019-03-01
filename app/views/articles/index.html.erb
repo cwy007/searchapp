@@ -27,6 +27,11 @@
   <tbody>
     <% @articles.__send__ controller.action_name == 'search' ? :each_with_hit : :each do |article, hit| %>
       <tr>
+        <%#= article.inspect # Article 实例 %>
+        <%# hit.inspect.split(' _').each do |item| # es 查询到的内容 %>
+          <p><%#= "_#{item}" %></p>
+        <%# end %>
+
         <td><%= hit.try(:highlight).try(:title)   ? hit.highlight.title.join.html_safe : article.title %></td>
         <td><%= hit.try(:highlight).try(:content) ? hit.highlight.content.join('&hellip;').html_safe : article.content %></td>
         <td><%= article.published_on %></td>
@@ -46,7 +51,7 @@
 <hr>
 
 <p style="text-align: center; margin-bottom: 21px">
-  <%= link_to 'New Article', new_article_path, class: 'btn btn-primary btn-xs', style: 'color: #fff' %>  
+  <%= link_to 'New Article', new_article_path, class: 'btn btn-primary btn-xs', style: 'color: #fff' %>
   <%= link_to 'All Articles', articles_path, class: 'btn btn-primary btn-xs', style: 'color: #fff' if params[:q] %>
 
 
