@@ -30,3 +30,5 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 vendor/elasticsearch-5.2.1/
+
+erd.pdf
