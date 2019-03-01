@@ -4,6 +4,8 @@ require 'rails/test_help'
 
 require 'mocha/minitest'
 
+require 'sidekiq/testing'
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
